@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import ProjectCard from './components/ProjectCard';
+import SkillCard from './components/SkillCard';
 import profileImage from './assets/profile.png';
 import {
   Github,
   Linkedin,
   Mail,
   Download,
-  ExternalLink,
   Code,
   Server,
   Database,
@@ -19,6 +20,7 @@ import {
 } from 'lucide-react';
 
 function App() {
+  const base_url = import.meta.env.BASE_URL;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -31,23 +33,38 @@ function App() {
     }
   };
 
-  const skills = {
-    backend: [
-      'TypeScript', 'JavaScript', 'Python', 'PHP', 'Node.js', 'Express.js'
-    ],
-    frameworks: [
-      'React', 'Bootstrap', 'Leaflet', 'Jest'
-    ],
-    databases: [
-      'MySQL', 'MongoDB', 'Firebase'
-    ],
-    cloud: [
-      'Git', 'GitHub', 'Postman', 'Visual Studio Code', 'FileZilla'
-    ],
-    tools: [
-      'REST APIs', 'POO', 'Geoserver', 'QGIS', 'Stripe', 'PayPal SDK', 'Google OAuth'
-    ]
-  };
+  const skills = [
+    {
+      category: 'Lenguajes',
+      technologies: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Node.js', 'Express.js'],
+      icon: Code,
+      color: 'blue'
+    },
+    {
+      category: 'Frameworks / Librerías',
+      technologies: ['React', 'Bootstrap', 'Leaflet', 'Jest'],
+      icon: Server,
+      color: 'green'
+    },
+    {
+      category: 'Bases de Datos',
+      technologies: ['MySQL', 'MongoDB', 'Firebase'],
+      icon: Database,
+      color: 'yellow'
+    },
+    {
+      category: 'Herramientas',
+      technologies: ['Git', 'GitHub', 'Postman', 'Visual Studio Code', 'FileZilla'],
+      icon: Cloud,
+      color: 'purple'
+    },
+    {
+      category: 'Otros',
+      technologies: ['REST APIs', 'POO', 'Geoserver', 'QGIS', 'Stripe', 'PayPal SDK', 'Google OAuth'],
+      icon: Wrench,
+      color: 'orange'
+    }
+  ];
 
   const experience = [
     {
@@ -68,21 +85,24 @@ function App() {
         type: 'Aplicación Web',
         description: 'Mapa interactivo con información georreferenciada del municipio de Guadalupe, N.L.',
         technologies: ['HTML', 'Bootstrap', 'JavaScript', 'PHP', 'MySQL', 'Leaflet'],
-        link: 'https://visorurbano.guadalupe.gob.mx/'
+        link: 'https://visorurbano.guadalupe.gob.mx/',
+        imageURL: `${base_url}img/visorguadalupe.png`
       },
       {
         title: 'Visor Proaxis',
         type: 'Aplicación Web',
         description: 'Visor gratuito con mapas y datos analíticos sobre desarrollo urbano e inmobiliario en Monterrey, N.L.',
         technologies: ['HTML', 'Bootstrap', 'JavaScript', 'PHP', 'MySQL', 'Leaflet'],
-        link: 'https://visorproaxis.com/'
+        link: 'https://visorproaxis.com/',
+        imageURL: `${base_url}img/visorproaxis.png`
       },
       {
         title: 'Tienda Proaxis',
         type: 'Tienda en Línea',
         description: 'Tienda en línea con plantillas profesionales en Excel para desarrolladores inmobiliarios como proformas paramétricas, mapas socioeconómicos y análisis financieros.',
         technologies: ['HTML', 'Bootstrap', 'JavaScript', 'PHP', 'MySQL', 'Paypal SDK'],
-        link: 'https://tienda.proaxis.com.mx/'
+        link: 'https://tienda.proaxis.com.mx/',
+        imageURL: `${base_url}img/tiendaproaxis.png`
       },
     ],
     personal: [
@@ -92,21 +112,24 @@ function App() {
         description: 'Calculadora de subredes con técnica VLSM. Backend en Node.js con TypeScript, handlebars, Bootstrap y Jest.',
         technologies: ['TypeScript', 'Node.js', 'Bootstrap', 'Jest'],
         link: 'https://vlsm-calc.onrender.com/',
-        github: 'https://github.com/DavidAlejandro18/vlsm-calc'
+        github: 'https://github.com/DavidAlejandro18/vlsm-calc',
+        imageURL: `${base_url}img/vlsmcalc2.png`
       },
       {
         title: 'Access Code',
-        type: 'Aplicación Web',
+        type: 'Aplicación',
         description: 'App para control de accesos residenciales con códigos QR. Desarrollada en React Native. Expo Firebase, TypeScript.',
         technologies: ['React Native', 'TypeScript', 'Firebase', 'Expo'],
-        github: 'https://github.com/DavidAlejandro18/access-code'
+        github: 'https://github.com/DavidAlejandro18/access-code',
+        imageURL: `${base_url}img/accesscode.png`
       },
       {
         title: 'Leaflet AnimatedSearchBox',
         type: 'Plugin',
         description: 'Plugin de autocompletado en mapas Leaflet. Usando HTML, CSS y JS.',
         technologies: ['HTML', 'CSS', 'JavaScript', 'Leaflet'],
-        github: 'https://github.com/DavidAlejandro18/Leaflet.AnimatedSearchBox'
+        github: 'https://github.com/DavidAlejandro18/Leaflet.AnimatedSearchBox',
+        imageURL: `${base_url}img/searchbox.png`
       },
     ]
   };
@@ -212,7 +235,7 @@ function App() {
                   Contáctame
                 </button>
                 <a
-                  href={`${import.meta.env.BASE_URL}cv.pdf`}
+                  href={`${base_url}cv.pdf`}
                   download
                   className="border border-gray-600 hover:border-gray-500 px-8 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
                 >
@@ -255,75 +278,15 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Habilidades Técnicas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-800 rounded-lg p-6">
-              <div className="flex items-center mb-4">
-                <Code className="text-blue-400 mr-3" size={24} />
-                <h3 className="text-xl font-semibold">Lenguajes</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.backend.map((skill) => (
-                  <span key={skill} className="bg-blue-600/20 text-blue-300 px-3 py-1 rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gray-800 rounded-lg p-6">
-              <div className="flex items-center mb-4">
-                <Server className="text-green-400 mr-3" size={24} />
-                <h3 className="text-xl font-semibold">Frameworks / Librerías</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.frameworks.map((skill) => (
-                  <span key={skill} className="bg-green-600/20 text-green-300 px-3 py-1 rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gray-800 rounded-lg p-6">
-              <div className="flex items-center mb-4">
-                <Database className="text-yellow-400 mr-3" size={24} />
-                <h3 className="text-xl font-semibold">Bases de Datos</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.databases.map((skill) => (
-                  <span key={skill} className="bg-yellow-600/20 text-yellow-300 px-3 py-1 rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gray-800 rounded-lg p-6">
-              <div className="flex items-center mb-4">
-                <Cloud className="text-purple-400 mr-3" size={24} />
-                <h3 className="text-xl font-semibold">Herramientas</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.cloud.map((skill) => (
-                  <span key={skill} className="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gray-800 rounded-lg p-6 md:col-span-2 lg:col-span-1">
-              <div className="flex items-center mb-4">
-                <Wrench className="text-orange-400 mr-3" size={24} />
-                <h3 className="text-xl font-semibold">Otros</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills.tools.map((skill) => (
-                  <span key={skill} className="bg-orange-600/20 text-orange-300 px-3 py-1 rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+            {skills.map((skill, index) => (
+              <SkillCard
+                key={index}
+                Icon={skill.icon}
+                category={skill.category}
+                technologies={skill.technologies}
+                color={skill.color}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -375,59 +338,31 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Proyectos Empresariales</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.business.map((project, index) => (
-              <div key={index} className="bg-gray-800 rounded-lg p-6 hover:bg-gray-750 transition-colors flex flex-col h-full">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-blue-400 font-medium">{project.type}</span>
-                  <div className="flex gap-2">
-                    {project.link && (
-                      <a href={project.link} target='_blank' className="text-gray-400 hover:text-white transition-colors">
-                        <ExternalLink size={18} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                <p className="text-gray-300 mb-4 flex-grow">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <ProjectCard
+                key={index}
+                title={project.title}
+                type={project.type}
+                description={project.description}
+                technologies={project.technologies}
+                link={project.link}
+                imageURL={project.imageURL}
+              ></ProjectCard>
             ))}
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-center mt-16 mb-12">Proyectos Personales</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.personal.map((project, index) => (
-              <div key={index} className="bg-gray-800 rounded-lg p-6 hover:bg-gray-750 transition-colors flex flex-col h-full">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-blue-400 font-medium">{project.type}</span>
-                  <div className="flex gap-2">
-                    {project.link && (
-                      <a href={project.link} target='_blank' className="text-gray-400 hover:text-white transition-colors">
-                        <ExternalLink size={18} />
-                      </a>
-                    )}
-                    {project.github && (
-                      <a href={project.github} target='_blank' className="text-gray-400 hover:text-white transition-colors">
-                        <Github size={18} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                <p className="text-gray-300 mb-4 flex-grow">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <ProjectCard
+                key={index}
+                title={project.title}
+                type={project.type}
+                description={project.description}
+                technologies={project.technologies}
+                link={project.link}
+                github={project.github}
+                imageURL={project.imageURL}
+              ></ProjectCard>
             ))}
           </div>
         </div>
