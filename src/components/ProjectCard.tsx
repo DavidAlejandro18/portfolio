@@ -31,17 +31,25 @@ const ProjectCard = ({
             </div>
 
             <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-1">
                     <span className="text-sm text-blue-400 font-medium">{type}</span>
                     <div className="flex gap-2">
                         {link && (
-                            <a href={link} target='_blank' className="text-gray-400 hover:text-white transition-colors">
-                                <ExternalLink size={18} />
+                            <a 
+                                href={link} 
+                                target='_blank' 
+                                className="p-2 bg-gray-700 rounded-lg text-gray-400 hover:text-white hover:bg-gray-600 transition-all duration-200"
+                            >
+                                <ExternalLink size={20} />
                             </a>
                         )}
                         {github && (
-                            <a href={github} target='_blank' className="text-gray-400 hover:text-white transition-colors">
-                                <Github size={18} />
+                            <a 
+                                href={github} 
+                                target='_blank' 
+                                className="p-2 bg-gray-700 rounded-lg text-gray-400 hover:text-white hover:bg-gray-600 transition-all duration-200"
+                            >
+                                <Github size={20} />
                             </a>
                         )}
                     </div>
