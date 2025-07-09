@@ -3,10 +3,10 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   safelist: [
     {
-      pattern: /text-(blue|green|yellow|purple|orange)-(300|400)/,
+      pattern: /text-(blue|green|yellow|purple|orange|gray)-(300|400)/,
     },
     {
-      pattern: /bg-(blue|green|yellow|purple|orange)-600\/20/,
+      pattern: /bg-(blue|green|yellow|purple|orange|gray)-600\/20/,
     },
   ],
   theme: {

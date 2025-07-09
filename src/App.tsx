@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ProjectCard from './components/ProjectCard';
 import SkillCard from './components/SkillCard';
+import ExperienceCard from './components/ExperienceCard';
 import profileImage from './assets/profile.png';
 import {
   Github,
@@ -14,7 +15,6 @@ import {
   Menu,
   X,
   MapPin,
-  Calendar,
   GraduationCap,
   Wrench
 } from 'lucide-react';
@@ -73,7 +73,6 @@ function App() {
       period: 'Enero 2020 - Actualidad',
       location: 'Modalidad híbrida',
       description: 'Desarrollo de aplicaciones web, bases de datos relacionales y no relacionales, APIs REST y herramientas geoespaciales. Experiencia en el desarrollo de sistemas urbanos, tiendas en línea y sistemas de gestión de acceso.',
-      // technologies: ['TypeScript', 'Node.js', 'MongoDB', 'Firebase', 'APIs REST']
       technologies: ['PHP', 'MySQL', 'APIs REST', 'QGIS', 'GeoServer']
     },
   ];
@@ -297,36 +296,15 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Experiencia Profesional</h2>
           <div className="max-w-4xl mx-auto">
             {experience.map((job, index) => (
-              <div key={index} className="relative pl-8 pb-12 last:pb-0">
-                <div className="absolute left-0 top-0 w-4 h-4 bg-blue-500 rounded-full"></div>
-                <div className="absolute left-2 top-4 w-0.5 bg-gray-600 h-full"></div>
-                <div className="bg-gray-800 rounded-lg p-6 ml-4">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-semibold text-blue-400">{job.title}</h3>
-                      <p className="text-gray-300 font-medium">{job.company}</p>
-                    </div>
-                    <div className="text-sm text-gray-400 mt-2 md:mt-0">
-                      <div className="flex items-center gap-2">
-                        <Calendar size={16} />
-                        {job.period}
-                      </div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <MapPin size={16} />
-                        {job.location}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-gray-300 mb-4">{job.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {job.technologies.map((tech) => (
-                      <span key={tech} className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <ExperienceCard
+                key={index}
+                title={job.title}
+                company={job.company}
+                period={job.period}
+                location={job.location}
+                description={job.description}
+                technologies={job.technologies}
+              ></ExperienceCard>
             ))}
           </div>
         </div>
