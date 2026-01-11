@@ -36,13 +36,13 @@ function App() {
   const skills = [
     {
       category: 'Lenguajes',
-      technologies: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Node.js', 'Express.js'],
+      technologies: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Node.js'],
       icon: Code,
       color: 'blue'
     },
     {
       category: 'Frameworks / Librerías',
-      technologies: ['React', 'Bootstrap', 'Leaflet', 'Jest'],
+      technologies: ['React', 'Bootstrap', 'Leaflet', 'Jest', 'Express.js', 'Next.js', 'Fastify', 'React Native'],
       icon: Server,
       color: 'green'
     },
@@ -68,13 +68,21 @@ function App() {
 
   const experience = [
     {
+      title: 'Senior Full-stack Developer',
+      company: 'Proaxis',
+      period: 'Octubre 2025 - Actualidad',
+      location: 'Modalidad híbrida',
+      description: 'Colaboro en la implementación de nuevas features y mejoras continuas en distintas plataformas web. Mi trabajo abarca desde cambios de diseño y funcionalidad (FrontEnd) hasta la optimización y mantenimiento de APIs (Backend).',
+      technologies: ['Node', 'MongoDB', 'APIs REST', 'React', 'Next.js', 'Fastify']
+    },
+    {
       title: 'Desarrollador Full-stack',
       company: 'Proaxis',
-      period: 'Enero 2020 - Actualidad',
+      period: 'Enero 2020 - Octubre 2025',
       location: 'Modalidad híbrida',
       description: 'Desarrollo de aplicaciones web, bases de datos relacionales y no relacionales, APIs REST y herramientas geoespaciales. Experiencia en el desarrollo de sistemas urbanos, tiendas en línea y sistemas de gestión de acceso.',
       technologies: ['PHP', 'MySQL', 'APIs REST', 'QGIS', 'GeoServer']
-    },
+    }
   ];
 
   const projects = {
